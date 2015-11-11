@@ -19,6 +19,7 @@ namespace Interface
         protected int incX = 3, incY = 3;
         protected int heightLimit, widthLimit;  //variables para establecer los limites de las pantallas
         public abstract void Hola();
+        public void lupita();
         //Metodos absractos
         public abstract void LoadContent(ContentManager Content, String name);
         //Método para hacer colisiones

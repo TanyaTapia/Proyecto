@@ -22,3 +22,5 @@ C:\Users\Tanya\Documents\Visual Studio 2012\Projects\Interface\Interface\bin\Win
 C:\Users\Tanya\Documents\Visual Studio 2012\Projects\Interface\Interface\bin\WindowsGL\Debug\Content\ManRight\ManRight.png
 C:\Users\Tanya\Desktop\Proyecto\Interface\obj\x86\Debug\Interface.exe
 C:\Users\Tanya\Desktop\Proyecto\Interface\obj\x86\Debug\Interface.pdb
+C:\Users\Lupis\Desktop\Proyecto\Interface\obj\x86\Debug\Interface.exe
+C:\Users\Lupis\Desktop\Proyecto\Interface\obj\x86\Debug\Interface.pdb
