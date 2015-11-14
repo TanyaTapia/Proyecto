@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 namespace ProyectoBob
 {
-    class Hero:AnimatedCharacter
+    class Hero : AnimatedCharacter
     {
         Keys jump, crouch, right;
         BasicMap map;
@@ -23,29 +23,30 @@ namespace ProyectoBob
             this.right = Right;
         }
 
-       public void SetMap(BasicMap theMap)
+        public void SetMap(BasicMap theMap)
         {
             map = theMap;
         }
-        
+
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             Rectangle currentPos = this.Pos;
 
-        
-           
-           /* if (Keyboard.GetState().IsKeyDown(crouch))
-            {
+
+
+            /* if (Keyboard.GetState().IsKeyDown(crouch))
+             {
                
-            }*/
+             }*/
 
             /*if (Keyboard.GetState().IsKeyDown(jump))
             {
               
             }*/
-            
+            direccion = SideDirection.Move_Right;
+            walkRigh.Update(gameTime);
             if (Keyboard.GetState().IsKeyDown(right))
             {
                 if (currentPos.X <= (widthLimit - currentPos.Width))
@@ -55,12 +56,12 @@ namespace ProyectoBob
                     walkRigh.Update(gameTime);
 
                     Rectangle pos = new Rectangle(currentPos.X, currentPos.Y, currentPos.Width, currentPos.Height);
-                    
+
                     pos.X += incX;
                     if (map.VallidateCollision(pos))
                     {
                         currentPos.X += incX;
-                        
+
                     }
                 }
             }

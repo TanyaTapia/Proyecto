@@ -30,7 +30,7 @@ namespace ProyectoBob
         {
             image = Content.Load<Texture2D>(dirName + "/" + name);
             //Se respetan los valores que tiene la imagen
-            pos = new Rectangle(0, 0, 10,10);
+            pos = new Rectangle(0,0, image.Width,image.Height);
         }
 
 

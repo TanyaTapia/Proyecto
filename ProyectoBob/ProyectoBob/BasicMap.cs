@@ -23,31 +23,65 @@ namespace ProyectoBob
         Texture2D notransitable;
         Rectangle pos, posit;
         Color[] OverData;
+        int incX;
 
         bool test;
 
+        //Propiedades
+        /*public Rectangle Pos
+        {
+            set
+            {
+                pos = value;
+                posit = value;
+            }
+
+            get
+            {
+                return posit;
+            }
+        }*/
+
         //Metodos
-        public void LoadContent_Transitable(ContentManager Content, String transi)
+        public void LoadContent_Transitable(ContentManager Content, String transi, int x, int y)
         {
             transitable = Content.Load<Texture2D>(transi);
-          
+
 
             OverData = new Color[transitable.Width * transitable.Height];
             transitable.GetData(OverData);
-
-            pos = new Rectangle(-5, -1, (transitable.Width - 5000 ), (transitable.Height-200));
+            pos = new Rectangle(x, y, (transitable.Width - 5000), (transitable.Height - 200));
+            Console.WriteLine(transitable.Height - 200);
         }
 
-        public void LoadContent_Notransitable(String notransi, ContentManager Content)
+
+        public void LoadContent_Notransitable(String notransi, ContentManager Content, int x, int y)
         {
             notransitable = Content.Load<Texture2D>(notransi);//back
-            posit = new Rectangle(0, 420, (notransitable.Width - 100) , (notransitable.Height-100));
+            posit = new Rectangle(x, y, (notransitable.Width - 100), (notransitable.Height - 100));
         }
 
-        //No se necesita este Updated
-        public void Update()
+        public void SetIncrement(int incX)
         {
+            this.incX = incX;
+        }
+        //No se necesita este Updated
+        public void Update(GameTime gameTime)
+        {
+            Rectangle currentPos = pos;
+            Rectangle currentPos1 = posit;
 
+            currentPos.X -= incX;
+            currentPos1.X -= incX;
+            //regresar la imagen cuando no se dibuje
+            if (currentPos.X <= 0 - currentPos.Width)
+                currentPos.X = currentPos.Width;
+
+            if (currentPos1.X <= 0 - currentPos1.Width)
+                currentPos1.X = currentPos1.Width;
+
+            pos = currentPos;
+            posit = currentPos1;
         }
 
         //Codigo recuperado del video "11.- Contruccion OO - Mapas"

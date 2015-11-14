@@ -12,5 +12,6 @@ namespace ProyectoBob
 {
     class Bats: Enemy
     {
+       
     }
 }

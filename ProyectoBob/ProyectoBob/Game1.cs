@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace ProyectoBob
 {
-   
+
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
@@ -19,7 +19,9 @@ namespace ProyectoBob
 
 
         Bob bob;
-        BasicMap theMap;
+        BasicMap theMap, theMap2;
+
+        BasicSprite Life1;
         public Game1()
             : base()
         {
@@ -30,70 +32,77 @@ namespace ProyectoBob
 
         }
 
-       
+
 
 
 
 
         protected override void Initialize()
-        {    
+        {
             base.Initialize();
 
-           
+
 
         }
 
-        
+
 
 
 
 
         protected override void LoadContent()
         {
-            
+
+            Life1 = new BasicSprite();
+            Life1.LoadContent(Content, "Life", "Tres");
+            Rectangle tempo = Life1.Pos;
+            tempo.X = 400;
+            tempo.Y = 0;
+            Life1.Pos = tempo;
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
             theMap = new BasicMap();
+            theMap2 = new BasicMap();
             bob = new Bob();
             bob.LoadContent(Content);
+
             Rectangle temp = bob.Pos;
             temp.X = 100;
             temp.Y = 250;
             bob.Pos = temp;
             bob.SetMap(theMap);
-            theMap.LoadContent_Transitable(Content, "Transitable");
-            theMap.LoadContent_Notransitable( "NoTransitable",Content);
+
+            theMap.LoadContent_Transitable(Content, "Transitable", 0, -1);
+            theMap.LoadContent_Notransitable("NoTransitable", Content, 0, 420);
+            theMap.SetIncrement(7);
+
+            theMap2.LoadContent_Transitable(Content, "Transitable", 4080, -1);
+            theMap2.LoadContent_Notransitable("NoTransitable", Content, 8972, 420);
+            theMap2.SetIncrement(7);
 
             bob.setHeightLimits(graphics.GraphicsDevice.Viewport.Height);
             bob.setWidthLimits(graphics.GraphicsDevice.Viewport.Width);
 
-                
+
         }
-
-      
-
-
-
-
         protected override void UnloadContent()
         {
 
         }
 
-      
-
-
         protected override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            theMap.Update(gameTime);
+            theMap2.Update(gameTime);
             bob.Update(gameTime);
 
             base.Update(gameTime);
         }
 
-     
+
 
 
 
@@ -104,10 +113,13 @@ namespace ProyectoBob
             GraphicsDevice.Clear(Color.CornflowerBlue);
             base.Draw(gameTime);
 
-
+            
             theMap.DrawOver(spriteBatch);
+            theMap2.DrawOver(spriteBatch);
+            Life1.Draw(spriteBatch);
             bob.Draw(spriteBatch);
             theMap.DrawUnder(spriteBatch);
+            theMap2.DrawUnder(spriteBatch);
         }
     }
 }
