@@ -10,12 +10,12 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace ProyectoBob
 {
-      enum SideDirection { Jump, Crouch, Stand_Left, Stand_Right, Move_Left, Move_Right, GameOver}
+      enum SideDirection { Jump, Crouch, Stand_Left, Stand_Right, Move_Left, Move_Right, GameOver, cac1, cac2, cac3, cac4}
 
     class AnimatedCharacter
     {
         // Attributes
-        protected BasicSprite standLeft, standRight, jump, crouch;
+        protected BasicSprite standLeft, standRight, jump, crouch, cactus1, cactus2, cactus3, cactus4;
 
         protected BasicAnimatedSprite  walkRigh;   
         
@@ -109,8 +109,34 @@ namespace ProyectoBob
 
         //Loading metodo para animaciones con un solo archivo (BasicAnimatedSprite)
 
-       
-       
+       //LoadContent para cargar los cactus
+        public virtual void Cactus1(ContentManager Content, string dirName, String name)
+        {
+            cactus1 = new BasicSprite();
+            direccion = SideDirection.cac1;
+            cactus1.LoadContent(Content, dirName, name);
+        }
+        public virtual void Cactus2(ContentManager Content, string dirName, String name)
+        {
+            cactus2 = new BasicSprite();
+            direccion = SideDirection.cac2; 
+            cactus2.LoadContent(Content, dirName, name);
+        }
+
+        public virtual void Cactus3(ContentManager Content, string dirName, String name)
+        {
+            cactus3 = new BasicSprite();
+            direccion = SideDirection.cac3;
+            cactus3.LoadContent(Content, dirName, name);
+        }
+
+        public virtual void Cactus4(ContentManager Content, string dirName, String name)
+        {
+            cactus4 = new BasicSprite();
+            direccion = SideDirection.cac4;
+            cactus4.LoadContent(Content, dirName, name);
+        }
+
         public virtual void LoadContent_WalkRight(ContentManager Content, string dirName, String name, int frameWidth, int frameHeight, int frameCount, float timePerFrame)
         {
             walkRigh = new BasicAnimatedSprite();
@@ -164,13 +190,11 @@ namespace ProyectoBob
      
         public virtual void Update(GameTime gameTime)
         {
-            //Poner los valores por default 
-
-           
+            //Poner los valores por default         
             
     
             if (direccion == SideDirection.Move_Right)
-                    direccion = SideDirection.Stand_Right;
+                direccion = SideDirection.Stand_Right;
 
 
             /*if (collision)
@@ -186,8 +210,6 @@ namespace ProyectoBob
         {
             switch (direccion)
             {
-                
-             
                 case SideDirection.Move_Right:
                     {
                         walkRigh.Draw(spriteBatch);
@@ -213,6 +235,30 @@ namespace ProyectoBob
                         standRight.Draw(spriteBatch);
                         break;
                     }
+                case SideDirection.cac1:
+                    {
+                        cactus1.Draw(spriteBatch);
+                        break;
+                    }
+
+                case SideDirection.cac2:
+                    {
+                        cactus2.Draw(spriteBatch);
+                        break;
+                    }
+                case SideDirection.cac3:
+                    {
+                        cactus3.Draw(spriteBatch);
+                        break;
+                    }
+                case SideDirection.cac4:
+                    {
+                        cactus4.Draw(spriteBatch);
+                        break;
+                    }
+
+                
+             
               /* 
                * PARA IMAGENES EN COLISIONES
                * case SideDirection.Collision:

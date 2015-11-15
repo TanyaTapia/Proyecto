@@ -11,17 +11,26 @@ namespace ProyectoBob
 {
     class Hero : AnimatedCharacter
     {
-        Keys jump, crouch, right;
+        Keys jumping = Keys.Space;
+        Keys crouching = Keys.Down;
+        Keys right = Keys.Right;
+        // for jump using Euler eqs.
+        float accel = 0.0f, gravity = 0.0f;
+        float vel = 0.0f, posin = 0.0f, deltaT = 0.05f;
+        int posInit = 0;    // to stop the jump
         BasicMap map;
 
-        bool jum = true;
+        //bool jum = true;
 
-        public virtual void setKeys(Keys jump, Keys crouch, Keys Right)
+        //No debe de haber un metodo para asignar las teclas... ya van por default
+
+
+        /*public virtual void setKeys(Keys jump, Keys crouch, Keys Right)
         {
             this.jump = jump;
             this.crouch = crouch;
             this.right = Right;
-        }
+        }*/
 
         public void SetMap(BasicMap theMap)
         {
@@ -32,7 +41,7 @@ namespace ProyectoBob
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            Rectangle currentPos = this.Pos;
+            //Rectangle currentPos = this.Pos;
 
 
 
@@ -41,34 +50,70 @@ namespace ProyectoBob
                
              }*/
 
-            /*if (Keyboard.GetState().IsKeyDown(jump))
-            {
-              
-            }*/
             direccion = SideDirection.Move_Right;
             walkRigh.Update(gameTime);
             if (Keyboard.GetState().IsKeyDown(right))
             {
-                if (currentPos.X <= (widthLimit - currentPos.Width))
-                {
+                //if (currentPos.X <= (widthLimit - currentPos.Width))
+               // {
 
                     direccion = SideDirection.Move_Right;
                     walkRigh.Update(gameTime);
-
-                    Rectangle pos = new Rectangle(currentPos.X, currentPos.Y, currentPos.Width, currentPos.Height);
-
-                    pos.X += incX;
-                    if (map.VallidateCollision(pos))
-                    {
+                    Rectangle currentPos = walkRigh.Pos;
+                    //Rectangle pos = new Rectangle(currentPos.X, currentPos.Y, currentPos.Width, currentPos.Height);
+                
+                    //pos.X += incX;
+                    //if (map.VallidateCollision(currentPos))
+                   // {
                         currentPos.X += incX;
-
-                    }
-                }
+                        this.Pos = currentPos;
+                    //}
+               // }
+                //this.Pos = currentPos;
+            }
+            // Only accept ONE keyboard call - check to see we are not jumping (i.e. gravity = 0.0)
+            if (Keyboard.GetState().IsKeyDown(jumping) && gravity == 0.0)
+            {
+                accel = -2000.0f;       // acceleration impulse will control the height of the jump
+                vel = 0.0f;
+                posin = (float)walkRigh.Pos.Y;
+                posInit = walkRigh.Pos.Y;
+                gravity = 9.81f * 5.0f; // Gravity will control de speed of the jump (in conjunction with deltaT)
+                // OJO: deltaT is constant in this class.. can also be based on time per frame (technically, it should be the same)
             }
 
-            this.Pos = currentPos;
+            // do update only if gravity
+            // Means that we are jumping
+            // OJO: Can also use states to determine whether character will be jumping
+            //      This will change the logic at the beginning of Update()
+            if (gravity != 0.0)
+            {
+                vel += (accel + gravity) * deltaT;
+                posin += vel * deltaT;
+                // Set to zero so that there is only ONE impulse (setp impulse)
+                accel = 0.0f;
 
+                // Update position
+                Rectangle currentPos2 = walkRigh.Pos;
+                currentPos2.Y = (int)posin;
+                this.Pos = currentPos2;
+            }
 
+            // stop condition
+            // When does the character stop jumping? When it returns to its initial position
+            // Also, making sure we are actually jumping (i.e. vel is not 0)
+            if ((posInit <= (int)posin) && (vel != 0.0f))
+            {
+                gravity = 0.0f;
+                accel = 0.0f;
+                vel = 0.0f;
+                posin = (float)posInit;
+
+                // Update position
+                Rectangle currentPos2 = walkRigh.Pos;
+                currentPos2.Y = (int)posin;
+                this.Pos = currentPos2;
+            }
         }
     }
 }

@@ -71,28 +71,40 @@
       <Link>SDL.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\BobRight\FrontP_f01.png">
+    <Content Include="Content\BobRight\Front_f01.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\BobRight\FrontP_f02.png">
+    <Content Include="Content\BobRight\Front_f02.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\BobRight\FrontP_f03.png">
+    <Content Include="Content\BobRight\Front_f03.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\BobRight\FrontP_f04.png">
+    <Content Include="Content\BobRight\Front_f04.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\BobRight\FrontP_f05.png">
+    <Content Include="Content\BobRight\Front_f05.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\BobRight\FrontP_f06.png">
+    <Content Include="Content\BobRight\Front_f06.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\BobRight\FrontP_f07.png">
+    <Content Include="Content\BobRight\Front_f07.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\BobRight\FrontP_f08.png">
+    <Content Include="Content\BobRight\Front_f08.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Cactus\Cactus1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Cactus\Cactus2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Cactus\Cactus3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Cactus\Cactus4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Life\Cero.png">

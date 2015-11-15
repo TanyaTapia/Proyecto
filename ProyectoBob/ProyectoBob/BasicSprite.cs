@@ -32,8 +32,7 @@ namespace ProyectoBob
             //Se respetan los valores que tiene la imagen
             pos = new Rectangle(0,0, image.Width,image.Height);
         }
-
-
+        
         //Checar colisiones 
         public bool Colision(Rectangle rect)
         {
@@ -43,25 +42,15 @@ namespace ProyectoBob
                 collision = true;
             return collision;
         }
-
-      
-
-
-
-
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-                            spriteBatch.Draw(image, pos, Color.White);                 
+            spriteBatch.Draw(image, pos, Color.White);                 
             spriteBatch.End();
             collision = false;
         }
 
-
-
-
-
-        // Regresa/obtiene el valor de la posicion en un momento en especifico
+       // Regresa/obtiene el valor de la posicion en un momento en especifico
         public Rectangle Pos
         {
             set

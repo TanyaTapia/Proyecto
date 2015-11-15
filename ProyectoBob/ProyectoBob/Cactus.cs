@@ -12,5 +12,16 @@ namespace ProyectoBob
 {
     class Cactus : Enemy
     {
+        
+        Random myRand = new Random();
+
+        
+        public void LoadCac1(ContentManager Content)
+        {
+           this.Cactus1(Content, "Cactus", "Cactus1");
+        }
+ 
+           
+        
     }
 }

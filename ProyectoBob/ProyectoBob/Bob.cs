@@ -20,10 +20,10 @@ namespace ProyectoBob
         {
 
 
-            this.setKeys(Keys.A,Keys.Down,Keys.Right);
+            //this.setKeys(Keys.A,Keys.Down,Keys.Right);
           
           
-            this.LoadContent_WalkRight(Content, "BobRight", "FrontP_f",8, 0.09f);
+            this.LoadContent_WalkRight(Content, "BobRight", "Front_f",8, 0.06f);
 
             //this.LoadContent_Crouch(Content, "BobCrouch", "LinkBackStand");
             //this.LoadContent_Jump(Content, "BobJump", "LinkFrontStand");
