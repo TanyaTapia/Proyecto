@@ -22,7 +22,22 @@ namespace ProyectoBob
         Rectangle pos;
         bool collision;
 
+        Vector2 increment;
+        bool move;
 
+        public void SetIncrement(Vector2 input)
+        {
+            increment = input;
+
+        }
+
+        public void SetMove(bool set)
+        {
+            move = set;
+        }
+
+
+     
 
 
         // Metodo de inicializacion
@@ -42,11 +57,23 @@ namespace ProyectoBob
                 collision = true;
             return collision;
         }
+
+
+        public void Update(GameTime GameTime)
+        {
+            if (move)
+            {
+                pos.Y += (int)increment.Y;
+                pos.X += (int)increment.X;
+
+            }
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
             spriteBatch.Draw(image, pos, Color.White);                 
             spriteBatch.End();
+
             collision = false;
         }
 

@@ -14,6 +14,9 @@ namespace ProyectoBob
 {
     class Enemy : AnimatedCharacter  
     {
+        
+
+
 
     }
 }

@@ -20,9 +20,11 @@ namespace ProyectoBob
 
         Bob bob;
         BasicMap theMap, theMap2;
-        Cactus cactus;
-
         BasicSprite Life1;
+
+
+        Cactus cactus1, cactus2,cactus3;
+
         public Game1()
             : base()
         {
@@ -36,12 +38,17 @@ namespace ProyectoBob
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+
             Life1 = new BasicSprite();
             Life1.LoadContent(Content, "Life", "Tres");
             Rectangle tempo = Life1.Pos;
-            tempo.X = 400;
-            tempo.Y = 0;
-            Life1.Pos = tempo;           
+            tempo.X = 580;
+            tempo.Y = -100;
+            Life1.Pos = tempo;       
+    
+
+
 
             theMap = new BasicMap();
             theMap2 = new BasicMap();
@@ -56,9 +63,17 @@ namespace ProyectoBob
             bob.Pos = temp;
             bob.SetMap(theMap);
 
-            cactus = new Cactus();
-            //cactus.LoadContent(Content);
+            //Cactus
+            cactus1 = new Cactus();
+            cactus1.LoadCac1(Content);
 
+            cactus2 = new Cactus();
+            cactus2.LoadCac2(Content);
+
+            cactus3 = new Cactus();
+            cactus3.LoadCac3(Content);
+            
+            //Mapas
             theMap.LoadContent_Transitable(Content, "Transitable", 0, -1);
             theMap.LoadContent_Notransitable("NoTransitable", Content, 0, 420);
             theMap.SetIncrement(7);
@@ -84,7 +99,10 @@ namespace ProyectoBob
             theMap.Update(gameTime);
             theMap2.Update(gameTime);
             bob.Update(gameTime);
-            cactus.Update(gameTime);
+
+            cactus1.Update(gameTime);
+            cactus2.Update(gameTime);
+            cactus3.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -96,9 +114,14 @@ namespace ProyectoBob
             
             theMap.DrawOver(spriteBatch);
             theMap2.DrawOver(spriteBatch);
+
             Life1.Draw(spriteBatch);
             bob.Draw(spriteBatch);
-            //cactus.Draw(spriteBatch);
+            cactus1.Draw(spriteBatch);
+            cactus2.Draw(spriteBatch);
+            cactus3.Draw(spriteBatch);
+
+
             theMap.DrawUnder(spriteBatch);
             theMap2.DrawUnder(spriteBatch);
         }

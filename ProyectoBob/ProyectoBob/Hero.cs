@@ -78,7 +78,7 @@ namespace ProyectoBob
                 vel = 0.0f;
                 posin = (float)walkRigh.Pos.Y;
                 posInit = walkRigh.Pos.Y;
-                gravity = 9.81f * 5.0f; // Gravity will control de speed of the jump (in conjunction with deltaT)
+                gravity = 9.81f * 5f; // Gravity will control de speed of the jump (in conjunction with deltaT)
                 // OJO: deltaT is constant in this class.. can also be based on time per frame (technically, it should be the same)
             }
 
