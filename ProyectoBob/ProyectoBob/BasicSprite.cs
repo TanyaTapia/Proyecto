@@ -71,7 +71,10 @@ namespace ProyectoBob
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(image, pos, Color.White);                 
+            if (collision)
+            spriteBatch.Draw(image, pos, Color.Red);   
+            else
+                spriteBatch.Draw(image, pos, Color.White); 
             spriteBatch.End();
 
             collision = false;

@@ -32,21 +32,7 @@ namespace ProyectoBob
 
       //  BasicMap map;
 
-        // Properties
-        public virtual Rectangle Pos
-        {
-            set
-            {             
-                standRight.Pos = value;
-                //jump.Pos = value;
-                //crouch.Pos = value;
-                walkRigh.Pos = value;
-              
-            }
-            get { return walkRigh.Pos; }
-        }
-
-
+      
 
 
         // Methods 
@@ -212,7 +198,8 @@ namespace ProyectoBob
             jump.Colision(rect);
             crouch.Colision(rect);
             walkRigh.Colision(rect);
-            collision= standLeft.Colision(rect);
+
+           collision = standLeft.Colision(rect);
             return collision;
 
         }
@@ -238,8 +225,6 @@ namespace ProyectoBob
             {
                 for (int k = 0; k < Cactu.Count; k++)
                 {
-
-                // ((Basic)TheArray[k]).Collision(jugador.GetRect());
                 ((BasicSprite)Cactu[k]).SetMove(true);
                 ((BasicSprite)Cactu[k]).SetIncrement(new Vector2(-2, 0));
                 ((BasicSprite)Cactu[k]).Update(gameTime);
@@ -252,6 +237,27 @@ namespace ProyectoBob
         }
 
 
+        public virtual Rectangle Pos
+        {
+            set
+            {
+                if (direccion == SideDirection.cac)
+                {
+                    //Dar la posicion de cada uno de los cactus 
+                    for (int i = 0; i < Cactu.Count; i++)
+                    {
+                        ((BasicSprite)Cactu[i]).Pos = value;
+                    }
+                }
+
+                standRight.Pos = value;
+                //jump.Pos = value;
+                //crouch.Pos = value;
+                walkRigh.Pos = value;
+
+            }
+            get { return walkRigh.Pos; }
+        }
 
 
 

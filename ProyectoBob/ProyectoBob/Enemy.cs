@@ -15,7 +15,13 @@ namespace ProyectoBob
     class Enemy : AnimatedCharacter  
     {
         
-
+        public virtual void ColisionCactus(Rectangle rect)
+        {
+            for ( int i=0; i< Cactu.Count; i++)
+            {
+                ((BasicSprite)Cactu[i]).Colision(rect);
+            }
+        }
 
 
     }

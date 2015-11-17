@@ -98,6 +98,9 @@ namespace ProyectoBob
 
             cactus.Update(gameTime);
 
+            cactus.ColisionCactus(bob.GetRect());
+
+
 
             base.Update(gameTime);
         }
