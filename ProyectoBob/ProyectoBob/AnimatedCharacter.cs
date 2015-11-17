@@ -10,7 +10,7 @@ using System.Collections;
 
 namespace ProyectoBob
 {
-      enum SideDirection { Jump, Crouch, Stand_Left, Stand_Right, Move_Left, Move_Right, GameOver, cac1, cac2, cac3, cac4}
+      enum SideDirection { Jump, Crouch, Stand_Left, Stand_Right, Move_Left, Move_Right, GameOver, cac}
 
     class AnimatedCharacter
     {
@@ -26,9 +26,9 @@ namespace ProyectoBob
         protected Rectangle col;
         protected int heightLimit, widthLimit;
         protected bool collision;
-
-        protected ArrayList Cactus, Cac2, Cac3; //Cargar muchos enemigos en un arreglo
-
+        protected Random myRandom;
+        protected ArrayList Cactu; //Cargar muchos enemigos en un arreglo
+        protected int nR;
 
       //  BasicMap map;
 
@@ -54,65 +54,77 @@ namespace ProyectoBob
 
         //LoadContent para cargar los cactus
 
-        public virtual void Cactus1(ContentManager Content, string dirName, String name)
+        public virtual void Cactus(ContentManager Content, string dirName, String name, String name2, String name3)
         {
-            Cactus = new ArrayList();
+            Cactu = new ArrayList();
 
-            for (int k = 0; k < 10; k++) // Se generan los primeros tipos de cactus 
+            myRandom = new Random();
+
+
+
+
+            for (int k = 0; k < 50; k++) 
             {
                 cactus1 = new BasicSprite();
-                cactus1.LoadContent(Content, dirName,name);
-                    Rectangle tempo = cactus1.Pos;
-                    tempo.X = (1000*k);
-                    tempo.Y = 310;
-                    cactus1.Pos = tempo;
-                direccion = SideDirection.cac1;
-                Cactus.Add(cactus1);
-            }
-        }
-
-        public virtual void Cactus2(ContentManager Content, string dirName, String name)
-        {
-            Cac2 = new ArrayList();
-
-            for (int k = 0; k < 10; k++) // Se generan los primeros tipos de cactus 
-            {
                 cactus2 = new BasicSprite();
-                cactus2.LoadContent(Content, dirName, name);
-                Rectangle tempo = cactus2.Pos;
-                tempo.X = (800 * k);
-                tempo.Y = 310;
-                cactus2.Pos = tempo;
-                direccion = SideDirection.cac2;
-                Cac2.Add(cactus2);
-            }
-          
-        }
-
-        public virtual void Cactus3(ContentManager Content, string dirName, String name)
-        {
-            Cac3 = new ArrayList();
-
-            for (int k = 0; k < 10; k++) // Se generan los primeros tipos de cactus 
-            {
                 cactus3 = new BasicSprite();
-                cactus3.LoadContent(Content, dirName, name);
-                Rectangle tempo = cactus3.Pos;
-                tempo.X = (600 * k);
-                tempo.Y = 310;
-                cactus3.Pos = tempo;
-                direccion = SideDirection.cac3;
-                Cac3.Add(cactus3);
+
+                cactus1.LoadContent(Content, dirName, name);
+                cactus2.LoadContent(Content, dirName, name2);
+                cactus3.LoadContent(Content, dirName, name3);
+
+                nR = myRandom.Next(1, 4);
+
+                if (nR == 1)
+                {
+                    Rectangle tempo = cactus1.Pos;
+                    if (k == 0)
+                        tempo.X = 350;
+                    if (k >= 1)
+                        tempo.X = (myRandom.Next(360, 400)) + (((BasicSprite)Cactu[(k - 1)]).Pos.X); //Se separan los cactus
+                   
+                    
+                    tempo.Y = 330;
+                    cactus1.Pos = tempo;
+                    Cactu.Add(cactus1);
+                }
+                else
+                     if (nR== 2)
+                {
+                    Rectangle tempo = cactus2.Pos;
+                    if (k == 0)
+                        tempo.X = 350;
+                    if (k >= 1)
+                        tempo.X = (myRandom.Next(360, 400)) + (((BasicSprite)Cactu[(k - 1)]).Pos.X); //Se separan los cactus
+                    
+                    tempo.Y = 330;
+                    cactus2.Pos = tempo;
+                   
+                    Cactu.Add(cactus2);
+                }
+
+                     else
+                         if (nR >= 3)
+                         {
+                             Rectangle tempo = cactus3.Pos;
+                             if (k == 0)
+                                 tempo.X = 350;
+                             if (k >= 1)
+                                 tempo.X = (myRandom.Next(360, 400)) + (((BasicSprite)Cactu[(k - 1)]).Pos.X); //Se separan los cactus
+                             
+                             
+                             tempo.Y = 330;
+                             cactus3.Pos = tempo;
+                            
+                             Cactu.Add(cactus3);
+                         }
+
+                direccion = SideDirection.cac;
             }
-          
         }
 
-     /*     public virtual void Cactus4(ContentManager Content, string dirName, String name)
-        {
-            cactus4 = new BasicSprite();
-            direccion = SideDirection.cac4;
-            cactus4.LoadContent(Content, dirName, name);
-        }*/
+
+  
 
 
 
@@ -125,8 +137,6 @@ namespace ProyectoBob
             direccion = SideDirection.Jump;
             jump.LoadContent(Content, dirName, name);
         }
-
-
 
         public virtual void LoadContent_Crouch(ContentManager Content, string dirName, String name)
         {
@@ -150,9 +160,6 @@ namespace ProyectoBob
 
 
         //Loading metodo para animaciones con multiples archivos (BasicAnimatedSprite)
-
-     
-       
      
         public virtual void LoadContent_WalkRight(ContentManager Content, String nameDir, String nameFile, int frameCount, float timePerFrame)
         {
@@ -164,16 +171,7 @@ namespace ProyectoBob
 
 
 
-       /*PARA IMAGENES EN COLISIONES 
-        * public virtual void LoadContent_Collision(ContentManager Content, String nameDir, String nameFile, int frameCount, float timerPerFrame)
-        {
-            collisi = new BasicAnimatedSprite();
-            direccion = SideDirection.Collision;
-            collisi.LoadContent(Content, nameDir, nameFile, frameCount, timerPerFrame);
-
-        }*/ 
-
-
+      
 
 
 
@@ -190,15 +188,7 @@ namespace ProyectoBob
 
 
 
-       /*
-        * PARA IMAGENES EN COLISIONES
-        * public virtual void LoadContent_Collision(ContentManager Content, String dirName, String name, int frameWidth, int frameHeight, int frameCount, float timePerFrame)
-        {
-            collisi = new BasicAnimatedSprite();
-            direccion = SideDirection.Collision;
-            collisi.LoadContent(Content, dirName, name, frameWidth, frameHeight, frameCount, timePerFrame);
-
-        }*/
+      
 
 
         //Los siguientes dos metodos (setHeightLimits, setWidth) son para delimitar la pantalla 
@@ -211,6 +201,8 @@ namespace ProyectoBob
         {
             widthLimit = a;
         }
+
+
 
         //Checar colisiones
         public virtual bool Collision(Rectangle rect)
@@ -225,60 +217,43 @@ namespace ProyectoBob
 
         }
 
+
+
         public virtual Rectangle GetRect()
         {
             col = walkRigh.Pos;
             return col;
         }
      
+
+
         public virtual void Update(GameTime gameTime)
         {
             //Poner los valores por default         
             if (direccion == SideDirection.Move_Right)
                 direccion = SideDirection.Stand_Right;
             
-            //PARA CACTUS 1
-            if (direccion== SideDirection.cac1)
+            //PARA CACTUS 
+            if (direccion== SideDirection.cac)
             {
-            for (int k = 0; k < Cactus.Count; k++)
-            {
+                for (int k = 0; k < Cactu.Count; k++)
+                {
 
                 // ((Basic)TheArray[k]).Collision(jugador.GetRect());
-                ((BasicSprite)Cactus[k]).SetMove(true);
-                ((BasicSprite)Cactus[k]).SetIncrement(new Vector2(-2, 0));
-                ((BasicSprite)Cactus[k]).Update(gameTime);
+                ((BasicSprite)Cactu[k]).SetMove(true);
+                ((BasicSprite)Cactu[k]).SetIncrement(new Vector2(-2, 0));
+                ((BasicSprite)Cactu[k]).Update(gameTime);
 
-            }
-            }
-            else
-                if (direccion == SideDirection.cac2)
-                {
-                    for (int k = 0; k < Cac2.Count; k++)
-                    {
-
-                        // ((Basic)TheArray[k]).Collision(jugador.GetRect());
-                        ((BasicSprite)Cac2[k]).SetMove(true);
-                        ((BasicSprite)Cac2[k]).SetIncrement(new Vector2(-2, 0));
-                        ((BasicSprite)Cac2[k]).Update(gameTime);
-
-                    }
                 }
-                else
-                    if (direccion == SideDirection.cac3)
-                    {
-                        for (int k = 0; k < Cac3.Count; k++)
-                        {
-
-                            // ((Basic)TheArray[k]).Collision(jugador.GetRect());
-                            ((BasicSprite)Cac3[k]).SetMove(true);
-                            ((BasicSprite)Cac3[k]).SetIncrement(new Vector2(-2, 0));
-                            ((BasicSprite)Cac3[k]).Update(gameTime);
-
-                        }
-                    }
+            }
+ 
 
 
         }
+
+
+
+
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
@@ -309,41 +284,15 @@ namespace ProyectoBob
                         standRight.Draw(spriteBatch);
                         break;
                     }
-                case SideDirection.cac1:
+
+                case SideDirection.cac:
                     {
-                        for (int k = 0; k < Cactus.Count; k++)
-                            ((BasicSprite)Cactus[k]).Draw(spriteBatch);
+                        for (int k = 0; k < Cactu.Count; k++)
+                            ((BasicSprite)Cactu[k]).Draw(spriteBatch);
                         break;
                     }
 
-                case SideDirection.cac2:
-                    {
-                        for (int k = 0; k < Cac2.Count; k++)
-                            ((BasicSprite)Cac2[k]).Draw(spriteBatch);
-                        break;
-                    }
-                case SideDirection.cac3:
-                    {
-                        for (int k = 0; k < Cac3.Count; k++)
-                            ((BasicSprite)Cac3[k]).Draw(spriteBatch);
-                        break;
-                    }
-               /* case SideDirection.cac4:
-                    {
-                        cactus4.Draw(spriteBatch);
-                        break;
-                    }*/
-                    
-                
-             
-              /* 
-               * PARA IMAGENES EN COLISIONES
-               * case SideDirection.Collision:
-                    {
-                        collisi.Draw(spriteBatch);
-                        
-                        break;
-                    }*/ 
+           
             }
         }
     }

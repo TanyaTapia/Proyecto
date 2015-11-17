@@ -16,19 +16,11 @@ namespace ProyectoBob
         Random myRand = new Random();
 
 
-        public void LoadCac1(ContentManager Content)
+        public void LoadCac(ContentManager Content)
         {
-            this.Cactus1(Content, "Cactus", "Cactus1");
+            this.Cactus(Content, "Cactus", "Cactus1","Cactus2", "Cactus3");
         }
-        public void LoadCac2(ContentManager Content)
-        {
-            this.Cactus2(Content, "Cactus", "Cactus2");
-
-        }
-        public void LoadCac3(ContentManager Content)
-        {
-            this.Cactus3(Content, "Cactus", "Cactus3");
-        }
+      
 
         
     }
