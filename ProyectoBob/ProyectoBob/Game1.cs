@@ -17,11 +17,8 @@ namespace ProyectoBob
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-
         Bob bob;
         BasicMap theMap, theMap2;
-        BasicSprite Life1;
-
 
         Cactus cactus;
 
@@ -40,14 +37,7 @@ namespace ProyectoBob
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
 
-            Life1 = new BasicSprite();
-            Life1.LoadContent(Content, "Life", "Tres");
-            Rectangle tempo = Life1.Pos;
-            tempo.X = 580;
-            tempo.Y = -100;
-            Life1.Pos = tempo;       
-    
-
+         
 
 
             theMap = new BasicMap();
@@ -66,8 +56,8 @@ namespace ProyectoBob
             //Cactus
             cactus = new Cactus();
             cactus.LoadCac(Content);
-
-
+            cactus.LoadLifes(Content);
+           
             
             //Mapas
             theMap.LoadContent_Transitable(Content, "Transitable", 0, -1);
@@ -113,10 +103,10 @@ namespace ProyectoBob
             theMap.DrawOver(spriteBatch);
             theMap2.DrawOver(spriteBatch);
 
-            Life1.Draw(spriteBatch);
+
             bob.Draw(spriteBatch);
             cactus.Draw(spriteBatch);
-           
+            cactus.DrawLife(spriteBatch);
 
             theMap.DrawUnder(spriteBatch);
             theMap2.DrawUnder(spriteBatch);

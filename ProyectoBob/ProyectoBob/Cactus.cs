@@ -13,7 +13,7 @@ namespace ProyectoBob
     class Cactus : Enemy
     {
 
-        Random myRand = new Random();
+   
 
 
         public void LoadCac(ContentManager Content)

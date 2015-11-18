@@ -49,7 +49,7 @@ namespace ProyectoBob
 
 
 
-            for (int k = 0; k < 50; k++) 
+            for (int k = 0; k < 20; k++) 
             {
                 cactus1 = new BasicSprite();
                 cactus2 = new BasicSprite();
